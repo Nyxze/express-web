@@ -5,6 +5,7 @@ const csrfProtection = require('csurf')();
 
 const bcrypt = require('bcrypt');
 const validateRegister = async (req, errors) => {
+    console.log(req.body.user_password)
 
     if (req.body.email != req.body.confirm_email) {
 
@@ -13,19 +14,15 @@ const validateRegister = async (req, errors) => {
     }
     if (req.body.user_password != req.body.confirm_password) {
 
-        errors.push("Pasword and Confirm Password must be the same");
+        errors.push("Password and Confirm Password must be the same");
     }
 
-    if (!req.body.user_password) {
-
-        errors.push("Enter a password");
-    } else if (req.body.user_password.length < 3 || req.body.user_password.length > 15) {
+    if (req.body.user_password.length < 3 || req.body.user_password.length > 15) {
         errors.push("Password too short");
     }
 
-    if (!req.body.user_name) {
-        errors.push("Vous devez entrer un nom")
-    } else if (req.body.user_name.length < 3) {
+
+    if (req.body.user_name.length === 0) {
         errors.push("Nom invalid");
     }
 
@@ -92,7 +89,7 @@ router.post('/login', async (req, res) => {
 
     let authenticate = false;
     const user = await userDAO.findOneBy('email', req.body.email);
-    
+
 
     if (await user && 'user_password' in user) {
         console.log(user);

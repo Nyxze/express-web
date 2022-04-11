@@ -4,5 +4,5 @@ exports.db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'node_js',
+  database: 'node_express',
 });
