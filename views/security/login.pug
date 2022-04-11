@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+    .p-4
+        h2 Inscription
+        form(method="post")
+            .row.mb-3
+                .col
+                    label.form-label Email
+                    input.form-control(name="email" type="text")
+                .col
+                    label.form-label Password
+                    input.form-control(name="user_password" type="password")
+            button.btn.btn-primary.w-100(type="submit") Login

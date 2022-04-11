@@ -1,0 +1,46 @@
+extends ../layout 
+block title
+    title=title
+
+block content
+     .p-4
+        h2 Inscription
+
+        if errors.length > 0
+            ul.alert.alert-danger.p-2
+                each message in errors
+                    li= message
+        form(method="post" enctype="multipart/form-data")
+            .row.mb-3
+                .col
+                    label.form-label Votre nom 
+                    input.form-control(name="user_name" type="text")
+                .col
+                    label.form-label Prénom
+                    input.form-control(name="user_firstName" type="text")
+            .row.mb-3
+                .col
+                    label.form-label Email 
+                    input.form-control(name="email" type="email")
+                
+                .col
+                    label.form-label Confirmation Email 
+                    input.form-control(name="confirm_email" type="email")
+            .row.mb-3
+                .col
+                    label.form-label Password 
+                    input.form-control(name="user_password" type="password")
+                
+                .col
+                    label.form-label Confirmation Password
+                    input.form-control(name="confirm_password" type="password" )
+            .row.mb-3
+                .col-12.mb-3
+                    label.form-label Photo
+                    input.form-control(name="photo" type="file")
+                .col-12.mb-3
+                    label.form-label Bio
+                    textarea.form-control(name="bio" rows="12" )
+
+                
+            button.btn.btn-primary.w-100(type="submit") Valider
